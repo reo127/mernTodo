@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors')
 const app = express();
-const Todo = require('./TodoSchema')
+const Todo = require('./models/TodoSchema')
 
 app.use(cors())
 app.use(express.json())
