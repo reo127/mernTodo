@@ -4,11 +4,15 @@ const cors = require('cors')
 const app = express();
 const Todo = require('./models/TodoSchema')
 
+require('dotenv').config()
+
+
+
 app.use(cors())
 app.use(express.json())
 
 // Connecting database
-mongoose.connect('mongodb+srv://rohan:kankimagi@cluster0.ecwot4i.mongodb.net/todo?retryWrites=true&w=majority')
+mongoose.connect( process.env.DATABASE )
 .then(()=>{
     console.log('Database Connected successfuly');
 }).catch(err => console.log(err))
@@ -26,7 +30,6 @@ app.get('/todos/:id', async (req, res) => {
     res.status(200).json(todo)
 })
 
-
 // Create new Todo
 app.post('/todos', (req, res) => {
     const {title, desc} = req.body; 
@@ -35,13 +38,11 @@ app.post('/todos', (req, res) => {
     res.json(todo)
 })
 
-
 // Delete Todo
 app.delete('/todos/:id', async (req, res) => {
     const del = await Todo.findByIdAndDelete(req.params.id);
     res.status(200).json({del})
 })
-
 
 // Update Todos
 app.put('/todos/:id', async (req, res) => {
@@ -57,6 +58,6 @@ app.put('/todos/:id', async (req, res) => {
 
 
 
-app.listen(8000, ()=>{
+app.listen( process.env.PORT , ()=>{
     console.log('app listening at 8000')
 })

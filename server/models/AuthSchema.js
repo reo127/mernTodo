@@ -8,9 +8,9 @@ const AuthSchema = new mongoose.Schema({
     token : { type: String },
     todo: [
         {
-            todoId: { type: String, required: true },
-            title: { type: String, required: true },
-            desc: { type: String, required: true }
+            todoId: { type: String },
+            title: { type: String },
+            desc: { type: String }
         }
     ]
 })
