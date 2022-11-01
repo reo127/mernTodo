@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors')
 const app = express();
 const Todo = require('./models/TodoSchema')
+const { register, login } = require('./Routers/AuthUser')
 
 require('dotenv').config()
 
@@ -18,8 +19,13 @@ mongoose.connect( process.env.DATABASE )
 }).catch(err => console.log(err))
 
 
-// API Routes
-// Get all Todos
+
+
+app.use('/register', register )
+app.use('/login', login )
+
+
+// Routes for todos =========================================================================>>
 app.get('/todos', async (req, res) => {
     const todos = await Todo.find();
     res.status(200).json(todos)
