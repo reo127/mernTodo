@@ -2,15 +2,18 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors')
 const app = express();
+const cookieParser = require('cookie-parser')
 const Todo = require('./models/TodoSchema')
-const { register, login } = require('./Routers/AuthUser')
+const { register, login, dashbord } = require('./Routers/AuthUser');
+const auth = require('./middleware/auth')
 
 require('dotenv').config()
 
 
 
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
+app.use(cookieParser());
 
 // Connecting database
 mongoose.connect( process.env.DATABASE )
@@ -20,9 +23,15 @@ mongoose.connect( process.env.DATABASE )
 
 
 
+// Routes for Authentication and authorization ===============================================>>
+app.use('/register', register );
+app.use('/login', login );
+app.use('/dashbord', auth, dashbord );
 
-app.use('/register', register )
-app.use('/login', login )
+
+
+
+
 
 
 // Routes for todos =========================================================================>>

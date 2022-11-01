@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const Auth = require('../models/AuthSchema')
+const auth = require('../middleware/auth')
 
 
 exports.register = async (req, res) => {
@@ -51,11 +52,20 @@ exports.login = async (req, res) => {
         // Fetch and check user is their or not
         const user = await Auth.findOne({ email });
         if (user && (await bcrypt.compare(password, user.password))) {
-            const token = await jwt.sign({ user_id: user._id }, process.env.SERECT_KEY, { expiresIn: "2h" })
+            const token = await jwt.sign({ user_id: user._id, email }, process.env.SERECT_KEY, { expiresIn: "2h" })
 
             user.token = token;
             user.password = undefined;
-            res.status(200).json(user)
+            // res.status(200).json(user)
+
+
+            // if you want to use cookies
+            const options = {
+                expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+                httpOnly : true
+            }
+
+            res.status(200).cookie("token", token, options).json({ seccess: true, token, user })
         }
 
         res.status(400).send("Email or password is not valid")
@@ -66,4 +76,10 @@ exports.login = async (req, res) => {
     } catch (error) {
         console.log(error)
     }
+}
+
+
+
+exports.dashbord = (req, res) => {
+    res.send("Dashbord, Secret information");
 }
