@@ -8,7 +8,7 @@ const Navber = () => {
               <Link to='/'>  <h1 className='text-3xl font-bold'>Todo App</h1></Link>
                 <div className="flex">
                 </div>
-                <div className="items-center flex-shrink-0 hidden lg:flex">
+                <div className="items-center flex-shrink-0 lg:flex">
                     <Link to='/login'> <button className="px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900 mr-3">Log in</button> </Link>
                     <Link to='/register'> <button className="px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900">Register</button> </Link>
                     <button className="px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900 ml-3">Logout</button> 

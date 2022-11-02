@@ -8,12 +8,12 @@ import Register from './Container/Register';
 function App() {
     return (
         <>
-           <Navber/>
-        <Routes>
-           <Route path='/' element={<TodoLocalhost/>} />
-           <Route path='/login' element={<Login/>} />
-           <Route path='/register' element={<Register/>} />
-        </Routes>
+            <Navber />
+            <Routes>
+                <Route path='/' element={<TodoLocalhost />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
+            </Routes>
         </>
     )
 }

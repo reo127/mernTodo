@@ -16,17 +16,17 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Connecting database
-mongoose.connect( process.env.DATABASE )
-.then(()=>{
-    console.log('Database Connected successfuly');
-}).catch(err => console.log(err))
+mongoose.connect(process.env.DATABASE)
+    .then(() => {
+        console.log('Database Connected successfuly');
+    }).catch(err => console.log(err))
 
 
 
 // Routes for Authentication and authorization ===============================================>>
-app.use('/register', register );
-app.use('/login', login );
-app.use('/dashbord', auth, dashbord );
+app.use('/register', register);
+app.use('/login', login);
+app.use('/dashbord', auth, dashbord);
 
 
 
@@ -47,8 +47,8 @@ app.get('/todos/:id', async (req, res) => {
 
 // Create new Todo
 app.post('/todos', (req, res) => {
-    const {title, desc} = req.body; 
-    const todo = Todo({title, desc})
+    const { title, desc } = req.body;
+    const todo = Todo({ title, desc })
     todo.save();
     res.json(todo)
 })
@@ -56,14 +56,14 @@ app.post('/todos', (req, res) => {
 // Delete Todo
 app.delete('/todos/:id', async (req, res) => {
     const del = await Todo.findByIdAndDelete(req.params.id);
-    res.status(200).json({del})
+    res.status(200).json({ del })
 })
 
 // Update Todos
 app.put('/todos/:id', async (req, res) => {
     const { title, desc } = req.body;
     const todo = await Todo.findById(req.params.id);
-    
+
     todo.title = title;
     todo.desc = desc;
     todo.save();
@@ -73,6 +73,6 @@ app.put('/todos/:id', async (req, res) => {
 
 
 
-app.listen( process.env.PORT , ()=>{
+app.listen(process.env.PORT, () => {
     console.log('app listening at 8000')
 })

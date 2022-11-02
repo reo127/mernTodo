@@ -6,18 +6,18 @@ const Login = () => {
     const [password, setpassword] = useState('');
 
 
-    const handleLogin = async ( e ) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         console.log('hare')
 
         const responce = await fetch('http://127.0.0.1:8000/login', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password})
+            body: JSON.stringify({ email, password })
         })
 
-        let userData = await responce.json();
-        console.log(userData);
+        let userData = responce.json();
+        console.log( await userData)
 
     }
 

@@ -7,6 +7,7 @@ const auth = require('../middleware/auth')
 
 
 exports.register = async (req, res) => {
+    // res.set('Access-Control-Allow-Origin', '*');
     try {
         const { firstName, lastName, email, password } = req.body;
 
@@ -37,7 +38,7 @@ exports.register = async (req, res) => {
         res.status(201).json(user)
 
     } catch (error) {
-        console.log(err)
+        console.log(error)
     }
 }
 
