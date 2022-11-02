@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Cookies from 'universal-cookie';
+
 
 const Login = () => {
 
@@ -16,8 +18,14 @@ const Login = () => {
             body: JSON.stringify({ email, password })
         })
 
-        let userData = responce.json();
-        console.log( await userData)
+        let userData = await responce.json();
+
+        const cookies = new Cookies();
+        cookies.set('token', userData.token, { path: '/' });
+
+        console.log( await userData?.token )
+
+        
 
     }
 
