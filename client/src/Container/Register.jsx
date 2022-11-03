@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+    const navigate = useNavigate();
 
     // Collecting input values
     const [firstName, setFirstName] = useState('');
@@ -59,6 +61,7 @@ const Register = () => {
         }
 
         console.log(data)
+        navigate('/login')
     }
 
 

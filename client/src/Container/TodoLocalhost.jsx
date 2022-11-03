@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+
 
 const TodoLocalhost = ({ isLogin, token }) => {
+
+
   const [todos, setTodos] = useState([])
   const [title, setTitle] = useState('')
   const [todoupdate, setTodoupdate] = useState([])
@@ -9,7 +12,6 @@ const TodoLocalhost = ({ isLogin, token }) => {
   useEffect(() => {
     getTodo()
   }, [todos])
-
 
 
 
@@ -22,6 +24,7 @@ const TodoLocalhost = ({ isLogin, token }) => {
     });
     setTodos(await response.json())
   }
+  
 
 
   // Add new Todo

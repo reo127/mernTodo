@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
 
 
 const Login = () => {
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setpassword] = useState('');
@@ -24,6 +26,7 @@ const Login = () => {
         cookies.set('token', userData.token, { path: '/' });
 
         console.log( await userData?.token )
+        navigate('/')
 
         
 

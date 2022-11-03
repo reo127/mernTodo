@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from 'universal-cookie';
 
 const Navber = ({ isLogin }) => {
+    const navigate = useNavigate();
 
     useEffect(() => {
         // window.location.reload();
@@ -14,7 +15,7 @@ const Navber = ({ isLogin }) => {
     const handleLogout = () => {
         const cookies = new Cookies();
         cookies.remove('token')
-
+        navigate('/login')
     }
 
 

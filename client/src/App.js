@@ -9,6 +9,8 @@ import Register from './Container/Register';
 
 function App() {
 
+  
+
     const [isLogin, setIsLogin] = useState(false)
     const [token, setToken] = useState('')
 
@@ -17,10 +19,11 @@ function App() {
         const cookies = new Cookies();
         let token = cookies.get('token');
         if (token) {
-            setToken(token)
-            setIsLogin(true)
+            setToken(token) 
+           setIsLogin(true)
         }
-    }, [])
+    }, [isLogin])
+
 
 
 
